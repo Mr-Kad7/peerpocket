@@ -1,0 +1,2 @@
+import {NextResponse} from 'next/server'; import {getSupabaseAdmin} from '@/lib/supabaseAdmin';
+export async function GET(){try{const {data,error}=await getSupabaseAdmin().from('campaigns').select('*').in('status',['published','funded']).order('featured',{ascending:false}).order('created_at',{ascending:false});if(error)throw error;return NextResponse.json({campaigns:data??[]})}catch{return NextResponse.json({error:'Database is not configured yet.'},{status:503})}}
