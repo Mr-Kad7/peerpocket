@@ -76,7 +76,8 @@ export default function Home() {
   }, [liveCampaigns, search, category, sort]);
   const impact = {...defaultImpact,...(siteContent.settings?.impact||{})};
   const platform = siteContent.settings?.platform||{};
-  const faqs = siteContent.faqs?.length ? siteContent.faqs : defaultFaqs;
+  const faqSource = siteContent.faqs?.length ? siteContent.faqs : defaultFaqs;
+  const faqs = Array.from(new Map(faqSource.map((faq:any)=>[String(faq.question).trim().toLowerCase(),faq])).values());
 
   function openCampaign(c: Campaign) { setSelected(c); setModal("campaign"); }
   function openSupport(c: Campaign) { setSelected(c); setAmount(""); setPhone(""); setPaymentReference(""); setNotice(""); setPaymentState("idle"); setModal("support"); }

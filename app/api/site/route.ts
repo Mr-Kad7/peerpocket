@@ -17,7 +17,7 @@ export async function GET(){
       settings:Object.fromEntries((settings.data||[]).map((item:any)=>[item.key,item.value])),
       faqs:uniqueFaqs,
       supporters:supporters.data||[],
-    });
+    },{headers:{'Cache-Control':'no-store'}});
   }catch{
     return NextResponse.json({settings:{},faqs:[]},{status:503});
   }
