@@ -34,8 +34,8 @@ const supporters = [
 
 const defaultImpact = { entrepreneurs_funded:342, support_mobilized:342000, supporters:1200, average_progress:78 };
 const defaultFaqs = [
-  {question:"Who can create a campaign?",answer:"Young entrepreneurs, students and micro-business owners can submit a business pitch. Campaigns are reviewed by the Peer Pockets administrator before publication."},
-  {question:"How does support work?",answer:"Supporters choose a campaign and amount. The final production flow will use a secure Mobile Money Request-to-Pay provider so the payer receives a prompt on their own phone."},
+  {question:"Who can create a campaign?",answer:"Young entrepreneurs, students and micro business owners can submit a business pitch. Campaigns are reviewed by the Peer Pockets administrator before publication."},
+  {question:"How does support work?",answer:"Supporters choose a campaign and amount. The final production flow will use a secure Mobile Money Request to Pay provider so the payer receives a prompt on their own phone."},
   {question:"What does “Verified” mean?",answer:"A verification badge means the relevant identity and campaign information has passed the platform's review process. It should never be treated as a guarantee of business success."},
   {question:"Can I report a campaign?",answer:"Yes. Suspicious or misleading campaigns can be reported so concerns can be reviewed by the administrator and appropriate action can be taken."}
 ];
@@ -64,7 +64,7 @@ export default function Home() {
       const campaignData=campaignResponse.ok?await campaignResponse.json():null;
       const siteData=siteResponse.ok?await siteResponse.json():null;
       if(campaignData?.campaigns?.length){setDbReady(true);setLiveCampaigns(campaignData.campaigns.map((c:any)=>({...c,name:c.entrepreneur_name,image:c.image_url||c.image||"/images/hero.svg",flagship:c.featured,update:c.latest_update||""})));}
-      if(siteData)setSiteContent(siteData);
+      if(siteData)setSiteContent({...siteData,faqs:Array.from(new Map((siteData.faqs||[]).map((faq:any)=>[faq.question,faq])).values())});
       if(siteData?.supporters?.length)setLiveSupporters(siteData.supporters.map((s:any)=>[s.display_name||"Anonymous supporter","Supporter",s.campaigns_supported||0,Number(s.total_supported||0)]));
     }).catch(() => {});
   }, []);
@@ -105,7 +105,7 @@ export default function Home() {
 
     <section className="hero page-pad">
       <div className="hero-grid">
-        <div><h1>Small capital.<br/><span>Real businesses.</span></h1><p className="hero-copy">We believe good businesses shouldn't fail because they started small. Peer Pockets connects young, student, and micro entrepreneurs with supporters who fund a clear next step.</p><div className="hero-actions"><a className="primary-link" href="#discover">Discover businesses <span>→</span></a><button className="secondary-link" onClick={() => setModal("pitch")}>Start a pitch</button></div><div className="trust-row"><span>✓ Clear funding goals</span><span>✓ Verified campaigns</span><span>✓ Ghana-focused</span></div></div>
+        <div><h1>Small capital.<br/><span>Real businesses.</span></h1><p className="hero-copy">We believe good businesses shouldn't fail because they started small. Peer Pockets connects young, student, and micro entrepreneurs with supporters who fund a clear next step.</p><div className="hero-actions"><a className="primary-link" href="#discover">Discover businesses <span>→</span></a><button className="secondary-link" onClick={() => setModal("pitch")}>Start a pitch</button></div><div className="trust-row"><span>✓ Clear funding goals</span><span>✓ Verified campaigns</span><span>✓ Ghana focused</span></div></div>
         <div className="hero-art"><img src="/images/hero.svg" alt="Young entrepreneurs growing businesses with community support"/><div className="hero-floating"><strong>GHS 342K+</strong><span>community support pledged</span></div></div>
       </div>
       <div className="program"><div><div className="gold">Flagship programme</div><h2>GHS 1,000 to 1,000 Entrepreneurs</h2><p>Support a cohort of young entrepreneurs with practical starting capital.</p></div><div className="program-stat"><strong>{impact.entrepreneurs_funded.toLocaleString()} / 1000</strong><span>entrepreneurs funded</span></div><div className="program-bar"><i style={{width:`${Math.min(100,Number(impact.entrepreneurs_funded)/10)}%`}}/></div></div>

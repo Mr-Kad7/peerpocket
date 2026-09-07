@@ -12,9 +12,10 @@ export async function GET(){
     if(settings.error)throw settings.error;
     if(faqs.error)throw faqs.error;
     if(supporters.error)throw supporters.error;
+    const uniqueFaqs=Array.from(new Map((faqs.data||[]).map((faq:any)=>[faq.question,faq])).values());
     return NextResponse.json({
       settings:Object.fromEntries((settings.data||[]).map((item:any)=>[item.key,item.value])),
-      faqs:faqs.data||[],
+      faqs:uniqueFaqs,
       supporters:supporters.data||[],
     });
   }catch{

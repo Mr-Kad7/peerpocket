@@ -21,6 +21,8 @@ insert into campaigns(slug,category,title,entrepreneur_name,location,description
 ('snacks','Food & Trading','Healthy snack packs for students','Abena Ofori','Takoradi, Ghana','Affordable snack packs made from locally sourced ingredients.','GHS 600 ingredients · GHS 450 packaging · GHS 250 delivery',520,1300,16,'/images/snacks.svg',false,false,'published','New sample packs are being tested.') on conflict(slug) do nothing;
 
 create table if not exists faqs(id uuid primary key default gen_random_uuid(),question text not null,answer text not null,sort_order integer not null default 0,active boolean not null default true,created_at timestamptz not null default now(),updated_at timestamptz not null default now());
+delete from faqs a using faqs b where a.id>b.id and lower(trim(a.question))=lower(trim(b.question));
+create unique index if not exists faqs_question_unique on faqs(lower(trim(question)));
 alter table faqs enable row level security;
 drop policy if exists "public can view active faqs" on faqs;
 create policy "public can view active faqs" on faqs for select using(active=true);
