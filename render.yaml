@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: peerpocket
+    name: peerpockets
     runtime: node
     buildCommand: npm ci && npm run build
     startCommand: npm start
