@@ -116,7 +116,7 @@ export default function Home() {
     <header className="nav">
       <a href="#top" className="brand"><img src="/images/logo.svg" alt=""/><span>Peer Pockets</span></a>
       <nav className="nav-links"><a href="#discover">Discover</a><a href="#how-it-works">How it works</a><a href="#learn">Learn a skill</a><a href="#trust">Trust & safety</a><a href="#impact">Our impact</a></nav>
-      <div className="nav-actions"><button className="pitch-btn" onClick={() => setModal("pitch")}>Pitch your business</button></div>
+      <div className="nav-actions"><button className="pitch-btn" onClick={() => setModal("pitch")}>Pitch your business</button><a className="learn-nav-link" href="#learn">Learn a skill <span>↓</span></a></div>
     </header>
 
     <section className="hero page-pad">
