@@ -1,8 +1,9 @@
 # Peer Pockets
 
-Peer Pockets is a Ghana-focused crowdfunding platform for young, student and micro entrepreneurs: **Small capital. Real businesses.**
+Peer Pockets is an entrepreneurship-focused crowdfunding platform for young, student and micro entrepreneurs: **Small capital. Real businesses.**
 
 ## Included
+
 - Professional responsive public website
 - Campaign discovery, search, categories and sorting
 - Campaign detail views, progress, funding use and updates
@@ -20,10 +21,13 @@ Peer Pockets is a Ghana-focused crowdfunding platform for young, student and mic
 - Legal pages and professional footer
 
 ## Important payment note
+
 The current payment method is a **temporary manual Mobile Money workflow**. It does not trigger a PIN prompt or automatically verify money. A real Request-to-Pay/C2B integration must be connected before advertising automatic payments.
 
 ## Environment variables
+
 Set these in Render (never commit secrets to GitHub):
+
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `ADMIN_EMAIL`
@@ -31,6 +35,7 @@ Set these in Render (never commit secrets to GitHub):
 - `ADMIN_SESSION_SECRET` — use a long random secret for signed admin sessions
 
 ## Supabase setup
+
 1. Open Supabase SQL Editor.
 2. Run `supabase/schema.sql`.
 3. In Render → Environment, add the variables above.
@@ -41,6 +46,7 @@ The schema includes campaigns, pitch submissions, supporters, transactions, camp
 The image uploader creates/uses a public `campaign-images` Storage bucket for campaign artwork. For a stricter private setup, switch the bucket and serve signed URLs through a protected route.
 
 ## Admin workflow
+
 1. Open `https://peerpocketss.com/admin`.
 2. Sign in with `ADMIN_EMAIL` and `ADMIN_PASSWORD` configured in Render.
 3. Use the left-side sections to manage the platform.
@@ -49,16 +55,19 @@ The image uploader creates/uses a public `campaign-images` Storage bucket for ca
 6. Use Reports to investigate suspicious campaigns and suspend them from Campaigns.
 
 ## Run locally
+
 ```bash
 npm install
 npm run dev
 ```
 
 Production:
+
 ```bash
 npm run build
 npm start
 ```
 
 ## Deployment
+
 The project is designed for a Render Web Service running Next.js. Keep `peerpocketss.com` as the verified Render custom domain and Spaceship as the DNS provider.
