@@ -79,6 +79,7 @@ export default function Home() {
   }, [liveCampaigns, search, category, sort]);
   const impact = {...defaultImpact,...(siteContent.settings?.impact||{})};
   const platform = siteContent.settings?.platform||{};
+  const copy = siteContent.settings?.site_copy||{};
   const faqSource = siteContent.faqs?.length ? siteContent.faqs : defaultFaqs;
   const faqs = Array.from(new Map(faqSource.map((faq:any)=>[String(faq.question).trim().toLowerCase(),faq])).values());
 
@@ -103,14 +104,14 @@ export default function Home() {
 
   return <main id="top">
     <header className="nav">
-      <a href="#top" className="brand"><img src="/images/logo.svg" alt=""/><span>Peer Pockets</span></a>
+      <a href="#top" className="brand"><img src="/images/logo.svg" alt=""/><span>{platform.name||"Peer Pockets"}</span></a>
       <nav className="nav-links"><a href="#discover">Discover</a><a href="#how-it-works">How it works</a><a href="#trust">Trust & safety</a><a href="#impact">Our impact</a></nav>
       <div className="nav-actions"><button className="pitch-btn" onClick={() => setModal("learn")}>Learn a skill</button><button className="pitch-btn" onClick={() => setModal("pitch")}>Pitch your business</button></div>
     </header>
 
     <section className="hero page-pad">
       <div className="hero-grid">
-        <div><h1>Small capital.<br/><span>Real businesses.</span></h1><p className="hero-copy">We believe good businesses shouldn't fail because they started small. Peer Pockets connects young, student, and micro entrepreneurs with supporters who fund a clear next step.</p><div className="hero-actions"><a className="primary-link" href="#discover">Discover businesses <span>→</span></a><button className="secondary-link" onClick={() => setModal("pitch")}>Start a pitch</button></div><div className="trust-row"><span>✓ Clear funding goals</span><span>✓ Verified campaigns</span><span>✓ Entrepreneurship focused</span></div></div>
+        <div><h1>{copy.hero_title||"Small capital."}<br/><span>{copy.hero_highlight||"Real businesses."}</span></h1><p className="hero-copy">{copy.hero_description||"We believe good businesses shouldn't fail because they started small. Peer Pockets connects young, student, and micro entrepreneurs with supporters who fund a clear next step."}</p><div className="hero-actions"><a className="primary-link" href="#discover">{copy.hero_button||"Discover businesses"} <span>→</span></a><button className="secondary-link" onClick={() => setModal("pitch")}>{copy.pitch_button||"Start a pitch"}</button></div><div className="trust-row"><span>✓ Clear funding goals</span><span>✓ Verified campaigns</span><span>✓ Entrepreneurship focused</span></div></div>
         <div className="hero-art"><img src="/images/hero.svg" alt="Young entrepreneurs growing businesses with community support"/><div className="hero-floating"><strong>GHS 342K+</strong><span>community support pledged</span></div></div>
       </div>
       <div className="program"><div><div className="gold">Flagship programme</div><h2>GHS 1,000 to 1,000 Entrepreneurs</h2><p>Support a cohort of young entrepreneurs with practical starting capital.</p></div><div className="program-stat"><strong>{impact.entrepreneurs_funded.toLocaleString()} / 1000</strong><span>entrepreneurs funded</span></div><div className="program-bar"><i style={{width:`${Math.min(100,Number(impact.entrepreneurs_funded)/10)}%`}}/></div></div>
