@@ -68,7 +68,7 @@ export default function Home() {
       const siteData=siteResponse.ok?await siteResponse.json():null;
       if(campaignData?.campaigns?.length){setDbReady(true);setLiveCampaigns(campaignData.campaigns.map((c:any)=>({...c,name:c.entrepreneur_name,image:c.image_url||c.image||"/images/hero.svg",flagship:c.featured,update:c.latest_update||""})));}
       if(siteData)setSiteContent({...siteData,faqs:Array.from(new Map((siteData.faqs||[]).map((faq:any)=>[faq.question,faq])).values())});
-      if(siteData?.supporters?.length)setLiveSupporters(siteData.supporters.map((s:any)=>[s.display_name||"Anonymous supporter","Supporter",s.campaigns_supported||0,Number(s.total_supported||0)]));
+      if(siteData?.supporters?.length)setLiveSupporters(siteData.supporters.map((s:any)=>[s.display_name||"Anonymous supporter",s.role||"Supporter",s.campaigns_supported||0,Number(s.total_supported||0)]));
     }).catch(() => {});
   }, []);
 

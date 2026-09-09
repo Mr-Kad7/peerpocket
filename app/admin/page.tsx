@@ -1,5 +1,6 @@
 "use client";
 import {useEffect,useMemo,useState} from 'react';
+import EditableSupporters from './EditableSupporters';
 
 type Any={ [key:string]:any };
 const tabs=[['overview','Overview'],['campaigns','Campaigns'],['pitches','Pitch reviews'],['payments','Payments'],['supporters','Supporters'],['updates','Updates'],['faqs','FAQs'],['content','Site content'],['reports','Reports']];
@@ -22,7 +23,7 @@ export default function Admin(){
  {tab==='campaigns'&&<Campaigns data={c} setEditing={setEditing} act={act}/>} 
  {tab==='pitches'&&<Pitches data={pending} act={act}/>} 
  {tab==='payments'&&<Payments data={data.transactions||[]} act={act}/>} 
- {tab==='supporters'&&<Supporters data={data.supporters||[]}/>} 
+ {tab==='supporters'&&<EditableSupporters data={data.supporters||[]} refresh={load}/>}
  {tab==='updates'&&<Updates campaigns={c} data={data.updates||[]} act={act}/>} 
  {tab==='faqs'&&<Faqs data={data.faqs||[]} act={act}/>} 
  {tab==='content'&&<Content settings={data.settings||{}} act={act}/>} 

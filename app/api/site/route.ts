@@ -7,7 +7,7 @@ export async function GET(){
     const [settings,faqs,supporters]=await Promise.all([
       s.from('site_settings').select('key,value'),
       s.from('faqs').select('question,answer').eq('active',true).order('sort_order',{ascending:true}),
-      s.from('supporters').select('display_name,total_supported,campaigns_supported').order('total_supported',{ascending:false}).limit(8),
+      s.from('supporters').select('display_name,role,total_supported,campaigns_supported').order('total_supported',{ascending:false}).limit(8),
     ]);
     if(settings.error)throw settings.error;
     if(faqs.error)throw faqs.error;
