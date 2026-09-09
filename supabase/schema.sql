@@ -14,6 +14,10 @@ drop policy if exists "public can view campaign updates" on campaign_updates;
 create policy "public can view published campaigns" on campaigns for select using(status in('published','funded'));
 create policy "public can view campaign updates" on campaign_updates for select using(true);
 insert into site_settings(key,value) values('impact','{"entrepreneurs_funded":342,"support_mobilized":342000,"supporters":1200,"average_progress":78}'),('platform','{"name":"Peer Pockets","country":"Ghana","support_email":"hello@peerpocketss.com"}') on conflict(key) do nothing;
+insert into site_settings(key,value) values
+('site_copy','{"community_title":"People backing real businesses","community_description":"Supporters help entrepreneurs move from a good idea to a practical next step."}'),
+('community_supporters','[{"name":"Nana B.","role":"Sponsor","backed":6,"total":2400},{"name":"Kojo Mensah","role":"Investor","backed":4,"total":1600},{"name":"Priscilla O.","role":"Supporter","backed":3,"total":950},{"name":"Yaw A.","role":"Supporter","backed":5,"total":700}]')
+on conflict(key) do nothing;
 insert into campaigns(slug,category,title,entrepreneur_name,location,description,use_of_funds,raised,goal,supporters,image_url,verified,featured,status,latest_update) values
 ('kente','Fashion & Trading','Kente accessories for students','Akosua Boateng','Cape Coast, Ghana','A UCC student selling handmade kente accessories on campus.','GHS 800 fabric & materials · GHS 400 first market stall fee',780,1200,34,'/images/kente.svg',true,true,'published','We have reached 65% of our goal.'),
 ('repair','Services','Mobile phone repair kiosk','Kwabena Owusu','Kumasi, Ghana','A self-taught phone repair technician setting up a fixed kiosk.','GHS 2,000 tools & parts · GHS 1,500 kiosk rental deposit',1900,3500,51,'/images/repair.svg',true,false,'published','The first equipment purchase is ready.'),
