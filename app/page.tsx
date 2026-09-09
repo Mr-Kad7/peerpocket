@@ -34,10 +34,10 @@ const supporters = [
 
 const defaultImpact = { entrepreneurs_funded:342, support_mobilized:342000, supporters:1200, average_progress:78 };
 const defaultFaqs = [
-  {question:"Who can create a campaign?",answer:"Young entrepreneurs, students and micro business owners can submit a business pitch. Campaigns are reviewed by the Peer Pockets administrator before publication."},
+  {question:"Who can create a campaign?",answer:"Young entrepreneurs, students and micro business owners can submit a business pitch. Campaigns are reviewed by our team before publication."},
   {question:"How does support work?",answer:"Supporters choose a campaign and amount. The final production flow will use a secure Mobile Money Request to Pay provider so the payer receives a prompt on their own phone."},
   {question:"What does “Verified” mean?",answer:"A verification badge means the relevant identity and campaign information has passed the platform's review process. It should never be treated as a guarantee of business success."},
-  {question:"Can I report a campaign?",answer:"Yes. Suspicious or misleading campaigns can be reported so concerns can be reviewed by the administrator and appropriate action can be taken."}
+  {question:"Can I report a campaign?",answer:"Yes. Suspicious or misleading campaigns can be reported so our team can review concerns and take appropriate action."}
 ];
 
 const categories = ["All","Fashion & Trading","Services","Food & Delivery","Agriculture","Technology"];
@@ -130,7 +130,7 @@ export default function Home() {
 
     <section className="stories section page-pad"><div className="section-heading"><div><div className="eyebrow">Community stories</div><h2 className="section-title">Why people choose to support</h2></div><p className="section-subtitle">A professional platform should make the human impact visible, not just the numbers.</p></div><div className="story-grid"><blockquote>“I wanted to support something I could understand. Seeing exactly what the money was for made the decision easy.”<footer>— Peer Pockets supporter</footer></blockquote><blockquote>“The campaign helped me explain my next step clearly instead of simply asking people for money.”<footer>— Young entrepreneur</footer></blockquote><blockquote>“The progress updates make it feel like you're building the business together.”<footer>— Community member</footer></blockquote></div></section>
 
-    <section id="faq" className="section page-pad faq-section"><div className="section-heading"><div><div className="eyebrow">Questions</div><h2 className="section-title">Frequently asked questions</h2></div><p className="section-subtitle">A clear platform should make the important details easy to understand.</p></div><div className="faq-grid">{faqs.map((faq:any)=><details key={faq.question}><summary>{faq.question}</summary><p>{String(faq.answer).replace(/platform administrator/gi,"our team")}</p></details>)}</div></section>
+    <section id="faq" className="section page-pad faq-section"><div className="section-heading"><div><div className="eyebrow">Questions</div><h2 className="section-title">Frequently asked questions</h2></div><p className="section-subtitle">A clear platform should make the important details easy to understand.</p></div><div className="faq-grid">{faqs.map((faq:any)=><details key={faq.question}><summary>{faq.question}</summary><p>{String(faq.answer).replace(/\b(?:platform )?admin(?:istrator)?\b/gi,"our team")}</p></details>)}</div></section>
 
     <section className="cta-section page-pad"><div><div className="gold">For entrepreneurs</div><h2>Have a business that deserves a chance?</h2><p>Put a clear number behind your next step and let the community help you move.</p></div><button className="light-btn" onClick={()=>setModal("pitch")}>Pitch your business →</button></section>
 
