@@ -29,8 +29,7 @@ drop policy if exists "public can view active faqs" on faqs;
 create policy "public can view active faqs" on faqs for select using(active=true);
 insert into faqs(question,answer,sort_order) values
 ('What is Peer Pockets?','Peer Pockets connects young and micro entrepreneurs with supporters who want to fund practical business needs in Ghana.',1),
-('How are campaigns reviewed?','Every submitted pitch can be reviewed by the platform administrator before it is published.',2),
+('How are campaigns reviewed?','Every submitted pitch can be reviewed by our team before it is published.',2),
 ('How do I support a business?','Choose a campaign, enter your support amount and follow the Mobile Money instructions shown at checkout.',3),
 ('Can I report a campaign?','Yes. Suspicious or misleading campaigns can be reported for administrator review.',4)
 on conflict do nothing;
-
