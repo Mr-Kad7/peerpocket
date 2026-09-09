@@ -1,6 +1,7 @@
 "use client";
 import {useEffect,useMemo,useState} from 'react';
 import EditableSupporters from './EditableSupporters';
+import CommunityContent from './CommunityContent';
 
 type Any={ [key:string]:any };
 const tabs=[['overview','Overview'],['campaigns','Campaigns'],['pitches','Pitch reviews'],['payments','Payments'],['supporters','Supporters'],['updates','Updates'],['faqs','FAQs'],['content','Site content'],['reports','Reports']];
@@ -26,7 +27,7 @@ export default function Admin(){
  {tab==='supporters'&&<EditableSupporters data={data.supporters||[]} refresh={load}/>}
  {tab==='updates'&&<Updates campaigns={c} data={data.updates||[]} act={act}/>} 
  {tab==='faqs'&&<Faqs data={data.faqs||[]} act={act}/>} 
- {tab==='content'&&<Content settings={data.settings||{}} act={act}/>} 
+ {tab==='content'&&<><Content settings={data.settings||{}} act={act}/><CommunityContent settings={data.settings||{}} act={act}/></>}
  {tab==='reports'&&<Reports data={data.reports||[]} act={act}/>} 
  </section>{editing&&<CampaignEditor campaign={editing} setCampaign={setEditing} act={act} upload={upload} uploading={imageUploading}/>}</main>
 }
