@@ -2,7 +2,7 @@ import "./globals.css";
 
 export const metadata = {
   title: "Peer Pockets — Small Capital. Real Businesses.",
-  description: "Peer Pockets connects young and micro entrepreneurs with supporters who fund clear, itemized business needs through an entrepreneurship-focused community.",
+  description: "Peer Pockets connects young and micro entrepreneurs with supporters who fund clear, itemized business needs through an entrepreneur-focused community.",
   icons: { icon: "/images/logo.svg" },
 };
 

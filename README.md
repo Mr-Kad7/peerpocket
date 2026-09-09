@@ -1,6 +1,6 @@
 # Peer Pockets
 
-Peer Pockets is an entrepreneurship-focused crowdfunding platform for young, student and micro entrepreneurs: **Small capital. Real businesses.**
+Peer Pockets is an entrepreneur-focused crowdfunding platform for young, student and micro entrepreneurs: **Small capital. Real businesses.**
 
 ## Included
 

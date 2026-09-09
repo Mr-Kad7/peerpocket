@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-labelledby="title desc">
+  <title id="title">A cheerful yellow smile on a deep navy background</title>
+  <desc id="desc">Two golden circular eyes and a white dashed smile.</desc>
+  <rect width="900" height="900" rx="42" fill="#121936"/>
+  <circle cx="310" cy="390" r="68" fill="#e7af00"/>
+  <circle cx="590" cy="390" r="68" fill="#e7af00"/>
+  <path d="M245 505 C365 620 535 620 655 505" fill="none" stroke="#fff" stroke-width="22" stroke-linecap="round" stroke-dasharray="32 32"/>
+</svg>
