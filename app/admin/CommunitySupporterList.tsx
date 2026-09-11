@@ -3,10 +3,7 @@
 import {useState} from 'react';
 
 const defaults=[
-  {name:'Nana B.',role:'Sponsor',backed:6,total:2400},
-  {name:'Kojo Mensah',role:'Investor',backed:4,total:1600},
-  {name:'Priscilla O.',role:'Supporter',backed:3,total:950},
-  {name:'Yaw A.',role:'Supporter',backed:5,total:700},
+  {name:'',role:'Supporter',backed:0,total:0},
 ];
 
 export default function CommunitySupporterList({settings,act}:any){

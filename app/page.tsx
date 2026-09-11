@@ -29,7 +29,7 @@ const campaigns: Campaign[] = [
 ];
 
 const supporters = [
-  ["Nana B.","Sponsor",6,2400],["Kojo Mensah","Investor",4,1600],["Priscilla O.","Supporter",3,950],["Yaw A.","Supporter",5,700]
+  ["Anonymous supporter","Supporter",0,0]
 ] as const;
 
 const defaultImpact = { entrepreneurs_funded:342, support_mobilized:342000, supporters:1200, average_progress:78 };
@@ -81,7 +81,7 @@ export default function Home() {
   const platform = siteContent.settings?.platform||{};
   const copy = siteContent.settings?.site_copy||{};
   const faqSource = siteContent.faqs?.length ? siteContent.faqs : defaultFaqs;
-  const communitySupporters = Array.isArray(siteContent.settings?.community_supporters)&&siteContent.settings.community_supporters.length ? siteContent.settings.community_supporters.map((s:any)=>[s.name||"Anonymous supporter",s.role||"Supporter",Number(s.backed||0),Number(s.total||0)]) : liveSupporters;
+  const communitySupporters = liveSupporters;
   const faqs = Array.from(new Map(faqSource.map((faq:any)=>[String(faq.question).trim().toLowerCase(),faq])).values());
 
   function openCampaign(c: Campaign) { setSelected(c); setModal("campaign"); }
