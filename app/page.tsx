@@ -67,8 +67,28 @@ export default function Home() {
       const campaignData=campaignResponse.ok?await campaignResponse.json():null;
       const siteData=siteResponse.ok?await siteResponse.json():null;
       if(campaignData?.campaigns?.length){setDbReady(true);setLiveCampaigns(campaignData.campaigns.map((c:any)=>({...c,name:c.entrepreneur_name,image:c.image_url||c.image||"/images/hero.svg",flagship:c.featured,update:c.latest_update||""})));}
-      if(siteData)setSiteContent({...siteData,faqs:Array.from(new Map((siteData.faqs||[]).map((faq:any)=>[faq.question,faq])).values())});
-      if(siteData?.supporters?.length)setLiveSupporters(siteData.supporters.map((s:any)=>[s.display_name||"Anonymous supporter",s.role||"Supporter",s.campaigns_supported||0,Number(s.total_supported||0)]));
+      if(siteData){
+        const adminCommunitySupporters = Array.isArray(siteData.settings?.community_supporters) && siteData.settings.community_supporters.length
+          ? siteData.settings.community_supporters
+          : Array.isArray(siteData.supporters) && siteData.supporters.length
+            ? siteData.supporters
+            : supporters;
+
+        const formattedSupporters = adminCommunitySupporters.map((s:any) => {
+          const name = s.name || s.display_name || "Anonymous supporter";
+          const role = s.role || "Supporter";
+          const backed = Number(s.backed ?? s.campaigns_supported ?? 0);
+          const total = Number(s.total ?? s.total_supported ?? 0);
+          return [name, role, backed, total];
+        });
+
+        setSiteContent({
+          ...siteData,
+          settings: {...siteData.settings, community_supporters: adminCommunitySupporters},
+          faqs:Array.from(new Map((siteData.faqs||[]).map((faq:any)=>[faq.question,faq])).values())
+        });
+        setLiveSupporters(formattedSupporters);
+      }
     }).catch(() => {});
   }, []);
 
@@ -81,7 +101,7 @@ export default function Home() {
   const platform = siteContent.settings?.platform||{};
   const copy = siteContent.settings?.site_copy||{};
   const faqSource = siteContent.faqs?.length ? siteContent.faqs : defaultFaqs;
-  const communitySupporters = liveSupporters;
+  const communitySupporters = liveSupporters.length ? liveSupporters : supporters;
   const faqs = Array.from(new Map(faqSource.map((faq:any)=>[String(faq.question).trim().toLowerCase(),faq])).values());
 
   function openCampaign(c: Campaign) { setSelected(c); setModal("campaign"); }
