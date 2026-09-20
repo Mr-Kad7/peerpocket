@@ -126,7 +126,7 @@ export default function Home() {
 
   return <main id="top">
     <header className="nav">
-      <a href="#top" className="brand"><img src="/images/logo.svg" alt=""/><span>{platform.name||"Peer Pockets"}</span></a>
+      <a href="#top" className="brand"><img src="/images/Image.jpeg" alt=""/><span>{platform.name||"Peer Pockets"}</span></a>
       <nav className="nav-links"><a href="#discover">Discover</a><a href="#how-it-works">How it works</a><a href="#trust">Trust & safety</a><a href="#impact">Our impact</a></nav>
       <div className="nav-actions"><button className="pitch-btn" onClick={() => setModal("learn")}>Learn a skill</button><button className="pitch-btn" onClick={() => setModal("pitch")}>Pitch your business</button></div>
     </header>
@@ -134,7 +134,7 @@ export default function Home() {
     <section className="hero page-pad">
       <div className="hero-grid">
         <div><h1>{copy.hero_title||"Small capital."}<br/><span>{copy.hero_highlight||"Real businesses."}</span></h1><p className="hero-copy">{copy.hero_description||"Peer Pockets connects young, student, and micro entrepreneurs with a community of supporters who believe in potential and fund a clear next step."}</p><div className="hero-actions"><a className="primary-link" href="#discover">{copy.hero_button||"Discover businesses"} <span>→</span></a><button className="secondary-link" onClick={() => setModal("pitch")}>{copy.pitch_button||"Start a pitch"}</button></div><div className="trust-row"><span>✓ Clear funding goals</span><span>✓ Verified campaigns</span><span>✓ Entrepreneur-focused</span></div></div>
-        <div className="hero-art"><img src="/images/hero-smile.svg" alt="A cheerful yellow smile"/></div>
+        <div className="hero-art"><img src="/images/Image.jpeg" alt="A cheerful yellow smile"/></div>
       </div>
       <div className="program"><div><div className="gold">Flagship programme</div><h2>GHS 1,000 to 1,000 Entrepreneurs</h2><p>Support a cohort of young entrepreneurs with practical starting capital.</p></div><div className="program-stat"><strong>{impact.entrepreneurs_funded.toLocaleString()} / 1000</strong><span>entrepreneurs funded</span></div><div className="program-bar"><i style={{width:`${Math.min(100,Number(impact.entrepreneurs_funded)/10)}%`}}/></div></div>
     </section>
